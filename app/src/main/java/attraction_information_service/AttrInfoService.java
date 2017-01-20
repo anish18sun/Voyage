@@ -5,16 +5,21 @@
  */
 package attraction_information_service;
 
+import client.MainClient;
+
 public class AttrInfoService {
 
     private AttrInfo attrinfo;
+    private MainClient mainClient;
 
-    public AttrInfoService() throws AttrInfoInitializationException {
+    public AttrInfoService(MainClient mainClient) throws AttrInfoInitializationException {
         try {
             attrinfo = new AttrInfo();
         }
         catch(Exception e) {
             throw new AttrInfoInitializationException(e);
         }
+
+        this.mainClient = mainClient;
     }
 }

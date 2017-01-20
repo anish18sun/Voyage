@@ -4,36 +4,44 @@
  */
 package client;
 
-import context_service.ContextService;
+import context_service.KontextService;
 import recommendation_service.RecommendationService;
 import attraction_information_service.AttrInfoService;
-import context_service.ContextInitializationException;
+import context_service.KontextInitializationException;
+import recommendation_service.RecommendationInitializationException;
 import attraction_information_service.AttrInfoInitializationException;
 
 public class MainClient {
 
-    private ContextService contextService;
+    private Connector connector;
+    private KontextService kontextService;
     private AttrInfoService attrInfoService;
     private PubTransService pubTransService;
     private RecommendationService recommendationService;
 
-    public MainClient() {
+    public MainClient() throws Exception{
 
-        //constructor prototype here
-    }
-
-    public void initializeContextService() throws ContextInitializationException {
         try {
-            contextService = new ContextService();
+            connector = new Connector();    //establish connection to server
+            connector.receive();
         }
         catch(Exception e) {
-            throw new ContextInitializationException(e);
+            System.out.println("Exception in establishing connection : " + e.getMessage());
+        }
+    }
+
+    public void initializeKontextService() throws KontextInitializationException {
+        try {
+            kontextService = new KontextService(this);
+        }
+        catch(Exception e) {
+            throw new KontextInitializationException(e);
         }
     }
 
     public void initializeAttrInfoService() throws AttrInfoInitializationException {
         try {
-            attrInfoService = new AttrInfoService();
+            attrInfoService = new AttrInfoService(this);
         }
         catch(Exception e) {
             throw new AttrInfoInitializationException(e);
@@ -42,19 +50,23 @@ public class MainClient {
 
     public void initializePubTransService() throws PubTransInitializationException {
         try {
-            pubTransService = new PubTransService();
+            pubTransService = new PubTransService(this);
         }
-        catch(Excpetion e) {
+        catch(Exception e) {
             throw new PubTransInitializationException(e);
         }
     }
 
     public void initializeRecommendationService() throws RecommendationInitializationException{
         try {
-            recommendationService = new RecommendationService();
+            recommendationService = new RecommendationService(this);
         }
         catch(Exception e) {
             throw new RecommendationInitializationException(e);
         }
+    }
+
+    public Connector getConnector() {
+        return connector;
     }
 }

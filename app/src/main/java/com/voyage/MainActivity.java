@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         //instantiate the MainClient and start the services, this just for demo- can be changed
         MainClient client = new MainClient();
-        client.initializeContextService();
+        client.initializeKontextService();
         client.initializeAttrInfoService();
         client.initializePubTransService();
         client.initializeRecommendationService();

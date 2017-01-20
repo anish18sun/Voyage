@@ -3,13 +3,15 @@
  */
 package context_service;
 
-public class Context {
+import android.location.Location;
+
+public class Kontext {
 
     private Time time;              //these classes are defined in the android API
     private Weather weather;
     private Location location;
 
-    public Context() {
+    public Kontext() {
         time = new Time();          //at this point the time and other context parameters are initialized
         weather = new Weather();
         location = new Location();
