@@ -4,12 +4,14 @@
  */
 package client;
 
+import context_service.Kontext;
 import context_service.KontextService;
 import recommendation_service.RecommendationService;
 import attraction_information_service.AttrInfoService;
 import context_service.KontextInitializationException;
 import recommendation_service.RecommendationInitializationException;
 import attraction_information_service.AttrInfoInitializationException;
+import recommendation_service.SiteList;
 
 public class MainClient {
 
@@ -69,4 +71,12 @@ public class MainClient {
     public Connector getConnector() {
         return connector;
     }
+
+    public Kontext getDeviceKontext() { return kontextService.getKontext(); }
+
+    public SiteList getRecommendations(String deviceId) {
+        return recommendationService.getRecommendations(deviceId);
+    }
+
+
 }

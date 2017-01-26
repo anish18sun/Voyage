@@ -23,4 +23,10 @@ public class KontextService {
         this.mainClient = mainClient;
     }
 
+    /** Method to get the device context; the kontext is initialized with the Kontext Service
+     *  and the method below exports the kontext of the device
+     */
+    public Kontext getKontext() {
+        return kontext;
+    }
 }

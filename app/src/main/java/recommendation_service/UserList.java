@@ -3,9 +3,29 @@
  */
 package recommendation_service;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.ArrayList;
 
-public class UserList extends List<User> {
+public class UserList extends ArrayList<User> {
 
+    private HashMap<String, Integer> userIndexMap;
 
+    public UserList() {
+        super();
+
+        userIndexMap = new HashMap<>();
+        // TODO: 26/1/17 add more functionality as and when needed
+    }
+
+    public HashMap<String, Integer> getUserIndexMap() {
+        return userIndexMap;
+    }
+
+    public int getIndexForUser(String userId) {
+        return userIndexMap.get(userId);
+    }
+
+    public boolean isRegisteredUser(String userId) {
+        return userIndexMap.containsKey(userId);
+    }
 }
